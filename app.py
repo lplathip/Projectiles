@@ -87,7 +87,7 @@ def compute_trajectory(u, theta_deg, h, m, C_d, A):
     
     return x_data, y_data, x_data_no_drag, y_data_no_drag, x_data_red, y_data_red
 
-@app.route('/page1')
+@app.route('/Air-Resistance-and-Launch-Height')
 def index_1():
     return render_template('page1.html')
 
@@ -193,7 +193,7 @@ def plot_projectile_trajectories(X=1000, Y=300, g=9.81, u=150):
     graphJSON = fig.to_json()
     return graphJSON
 
-@app.route('/page2', methods=['GET'])
+@app.route('/High-Low-Ball-and-Bounding-Parabola', methods=['GET'])
 def index_2():
     plot = plot_projectile_trajectories()
     return render_template('page2.html', plot=plot, X=1000, Y=300, g=9.81, u=150)
@@ -292,7 +292,7 @@ for angle, t1, t2 in double_height_times:
     if len(x1) > 0 and len(y1) > 0 and len(x2) > 0 and len(y2) > 0:
         print(f"Angle = {angle}°, Point 1: ({x1[0]}, {y1[0]}), Point 2: ({x2[0]}, {y2[0]})")
 
-@app.route('/page3')
+@app.route('/Range-Time-Graph')
 def index_3():
     return render_template('page3.html', plot1=fig1.to_json(), plot2=fig2.to_json())
 
@@ -362,6 +362,11 @@ def update_plot_3():
 
     # Return updated plots JSON
     return jsonify({'plot1': fig1.to_json(), 'plot2': fig2.to_json()})
+
+
+@app.route('/COR')
+def index_4():
+    return render_template('COR.html')
 
 
 if __name__ == '__main__':
